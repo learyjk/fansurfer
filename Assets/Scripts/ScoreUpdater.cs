@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class ScoreUpdater : MonoBehaviour
 {
-    private void Start() {
+    private void Start() 
+    {
+        GetComponent<Text>().text = GameStatus.GetInstance().GetScore();
         GameStatus.GetInstance().ResetScore();
     }
 

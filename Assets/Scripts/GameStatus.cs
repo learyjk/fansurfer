@@ -8,10 +8,17 @@ public class GameStatus : MonoBehaviour
     static GameStatus instance;
     public static GameStatus GetInstance() { return instance; }
 
-    protected int score;
+    public int score;
+    public float speed = 4.5f;
+
+    void Awake()
+    {
+        Application.targetFrameRate = 300;
+    }
 
     void Start()
     {
+
         //Singleton - There should only ever be ONE GameStatus!
         if (instance != null)
         {
@@ -27,6 +34,10 @@ public class GameStatus : MonoBehaviour
     public void AddToScore(int amt)
     {
         score += amt;
+        if (score % 5 == 0)
+        {
+            RaiseSpeed(0.5f);
+        } 
     }
 
     public string GetScore()
@@ -37,6 +48,7 @@ public class GameStatus : MonoBehaviour
     public void ResetScore()
     {
         score = 0;
+        speed = 4.5f;
     }
 
     public void GameOver() {
@@ -52,5 +64,13 @@ public class GameStatus : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    
+    public float GetSpeed()
+    {
+        return speed;
+    }
+
+    public void RaiseSpeed(float amount)
+    {
+        speed += amount;
+    }   
 }

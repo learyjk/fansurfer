@@ -8,8 +8,9 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private ParticleSystem.EmissionModule fanParticles;
     public AudioSource source;
+    public GameStatus gs;
 
-    public float thrust = 40.0f;
+    public float thrust;
 
     void Start()
     {
@@ -17,11 +18,13 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         source = GetComponent<AudioSource>();
         fanParticles = gameObject.GetComponentInChildren<ParticleSystem>().emission;
+        gs = GameStatus.GetInstance();
+
     }
 
     void FixedUpdate()
     {
-        if(Input.GetButton("Jump"))
+        if(Input.touchCount > 0 || Input.GetMouseButton(0))
         {
             //Mouse button is down
             rb.AddForce(Vector2.up * thrust);

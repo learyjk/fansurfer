@@ -9,7 +9,7 @@ public class ScrollBG : MonoBehaviour
     private float width;
     private bool has_spawned;
 
-    [SerializeField] private float speed;
+    public float speed;
 
     private void Start() 
     {

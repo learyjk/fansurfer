@@ -5,14 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class Bird : MonoBehaviour
 {
-    [SerializeField] private float speed = 5.0f;
+    [SerializeField] private float speed;
 
     private float leftScreenEdge;
 
     private void Start() 
     {
-        leftScreenEdge = Camera.main.orthographicSize * -2;
-
+        leftScreenEdge = Camera.main.orthographicSize * -2 - 5;
+        speed = GameStatus.GetInstance().GetSpeed();
     }
 
     void Update()
